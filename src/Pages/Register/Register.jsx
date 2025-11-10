@@ -110,7 +110,7 @@ const Register = () => {
   };
 
   return (
-    <div className="flex justify-center bg-white py-3git  items-center min-h-screen">
+    <div className="flex justify-center bg-white py-3 items-center min-h-screen">
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl py-5 bg-[linear-gradient(to_right,#00F260,#0575E6)]">
         <div className="card-body">
           <h3 className="font-semibold text-2xl text-center">

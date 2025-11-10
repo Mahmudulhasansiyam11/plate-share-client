@@ -1,12 +1,10 @@
-
-
 import React, { useState, useContext } from "react";
 import logo from "../../assets/logo.png";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../Provider/AuthContext/AuthContext";
 import { toast } from "react-toastify";
 import { FcMenu } from "react-icons/fc";
-import userImg from "../../assets/user.png"
+import userImg from "../../assets/user.png";
 
 const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -36,13 +34,31 @@ const NavBar = () => {
 
   const links1 = (
     <>
-      {links}
       <NavLink
-        to="/feature"
+        to="/addFood"
         className="block px-3 py-2 rounded hover:bg-white/10"
       >
-        Features
+        Add Food
       </NavLink>
+      <NavLink
+        to="/manageMyFoods"
+        className="block px-3 py-2 rounded hover:bg-white/10"
+      >
+        Manage My Foods
+      </NavLink>
+      <NavLink
+        to="/myFoodRequest"
+        className="block px-3 py-2 rounded hover:bg-white/10"
+      >
+        My Food Request
+      </NavLink>
+      <NavLink
+        onClick={handleLogOut}
+        className="block px-3 py-2 rounded hover:bg-white/10"
+      >
+        LogOut
+      </NavLink>
+      
     </>
   );
 
@@ -60,7 +76,7 @@ const NavBar = () => {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-5">
-            <div className="flex gap-3">{user ? links1 : links}</div>
+            <div className="flex gap-3">{user ? links : links}</div>
             <div className="flex gap-3">
               {user ? (
                 <>
@@ -68,18 +84,28 @@ const NavBar = () => {
                     to="/myProfile"
                     className="btn-outline transition-transform transform hover:scale-105"
                   >
-                     {user?.photoURL == null ? (
+                    {user?.photoURL == null ? (
                       <img
                         className="w-10 h-10 rounded-full object-cover"
                         src={userImg}
                         alt="Profile"
                       />
                     ) : (
-                      <img
-                        className="w-10 h-10 rounded-full object-cover"
-                        src={user.photoURL}
-                        alt="Profile"
-                      />
+                      <div className="dropdown dropdown-hover">
+                        <div tabIndex={0} >
+                          <img
+                            className="w-10 h-10 rounded-full object-cover"
+                            src={user.photoURL}
+                            alt="Profile"
+                          />
+                        </div>
+                        <ul
+                          tabIndex="-1"
+                          className="dropdown-content menu bg-base-100 text-black rounded-box z-1 w-52 p-2 shadow-sm"
+                        >
+                         {links1}
+                        </ul>
+                      </div>
                     )}
                     {/* {user?.photoURL && (
                       <img
@@ -132,7 +158,7 @@ const NavBar = () => {
       {/* Mobile Menu */}
       {menuOpen && (
         <div className="md:hidden px-2 pt-2 pb-3 space-y-1 bg-[#031637]">
-          <div className="flex flex-col gap-2">{user ? links1 : links}</div>
+          <div className="flex flex-col gap-2">{user ? links : links1}</div>
           <div className="flex flex-col gap-2 mt-2">
             {user ? (
               <>
@@ -141,18 +167,18 @@ const NavBar = () => {
                   className="btn-outline transition-transform transform hover:scale-105"
                 >
                   {user?.photoURL == null ? (
-                      <img
-                        className="w-10 h-10 rounded-full object-cover"
-                        src={userImg}
-                        alt="Profile"
-                      />
-                    ) : (
-                      <img
-                        className="w-10 h-10 rounded-full object-cover"
-                        src={user.photoURL}
-                        alt="Profile"
-                      />
-                    )}
+                    <img
+                      className="w-10 h-10 rounded-full object-cover"
+                      src={userImg}
+                      alt="Profile"
+                    />
+                  ) : (
+                    <img
+                      className="w-10 h-10 rounded-full object-cover"
+                      src={user.photoURL}
+                      alt="Profile"
+                    />
+                  )}
                   {/* {user?.photoURL && (
                     <img
                       className="w-10 h-10 rounded-full object-cover"
