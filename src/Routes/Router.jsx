@@ -6,6 +6,7 @@ import ErrorPage from "../Components/ErrorPage/ErrorPage";
 import AuthLayout from "../Pages/AuthLayout/AuthLayout";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
+import PrivateRoute from "../Pages/PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,9 @@ const router = createBrowserRouter([
         },
         {
             path: "/availableFoods",
-            element: <AvailableFoods></AvailableFoods>
+            element: <PrivateRoute>
+                <AvailableFoods></AvailableFoods>
+            </PrivateRoute>
         }
     ]
   },
