@@ -11,6 +11,7 @@ import AddFood from "../Pages/AddFood/AddFood";
 import ManageMyFoods from "../Pages/ManageMyFoods/ManageMyFoods";
 import MyFoodRequest from "../Pages/MyFoodRequest/MyFoodRequest";
 import MyProfile from "../Pages/MyProfile/MyProfile";
+import UpdateProfile from "../Pages/UpdateProfile/UpdateProfile";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,12 @@ const router = createBrowserRouter([
             path: "/myProfile",
             element: <PrivateRoute>
                 <MyProfile></MyProfile>
+            </PrivateRoute>
+        },
+        {
+            path: "/updateProfile",
+            element: <PrivateRoute>
+                <UpdateProfile></UpdateProfile>
             </PrivateRoute>
         }
     ]
