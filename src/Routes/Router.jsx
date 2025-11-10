@@ -3,6 +3,8 @@ import Root from "../Layouts/Root";
 import HomeLayout from "../Pages/HomeLayout/HomeLayout";
 import AvailableFoods from "../Pages/AvailableFoods/AvailableFoods";
 import ErrorPage from "../Components/ErrorPage/ErrorPage";
+import AuthLayout from "../Pages/AuthLayout/AuthLayout";
+import Login from "../Pages/Login/Login";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +19,16 @@ const router = createBrowserRouter([
         {
             path: "/availableFoods",
             element: <AvailableFoods></AvailableFoods>
+        }
+    ]
+  },
+  {
+    path: "/auth",
+    element: <AuthLayout></AuthLayout>,
+    children: [
+        {
+            path: "/auth/login",
+            element: <Login></Login>
         }
     ]
   },
