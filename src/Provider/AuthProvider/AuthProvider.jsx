@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { AuthContext } from '../AuthContext/AuthContext';
 import { auth } from '../../Firebase/firebase.init';
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 
 const AuthProvider = ({children}) => {
 
@@ -40,9 +40,9 @@ const AuthProvider = ({children}) => {
     }
 
     // Reset Password
-    // const resetPassword = (email) => {
-    //     return sendPasswordResetEmail(auth, email);
-    // }
+    const resetPassword = (email) => {
+        return sendPasswordResetEmail(auth, email);
+    }
 
     // Observer functionality
     useEffect(()=>{
@@ -65,7 +65,7 @@ const AuthProvider = ({children}) => {
         setLoading,
         updateUser,
         googleSignIn,
-        // resetPassword,
+        resetPassword,
     }
 
     return (
