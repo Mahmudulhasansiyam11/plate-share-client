@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo.jpg";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../Provider/AuthContext/AuthContext";
 import { toast } from "react-toastify";
@@ -68,7 +68,7 @@ const NavBar = () => {
         <div className="flex justify-between h-16 items-center">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <img className="w-20" src={logo} alt="Logo" />
+            <img className="w-10 rounded-full" src={logo} alt="Logo" />
             {user && (
               <span className="hidden sm:block">{user.displayName}</span>
             )}
