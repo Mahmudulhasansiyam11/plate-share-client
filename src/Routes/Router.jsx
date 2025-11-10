@@ -5,6 +5,7 @@ import AvailableFoods from "../Pages/AvailableFoods/AvailableFoods";
 import ErrorPage from "../Components/ErrorPage/ErrorPage";
 import AuthLayout from "../Pages/AuthLayout/AuthLayout";
 import Login from "../Pages/Login/Login";
+import Register from "../Pages/Register/Register";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
         {
             path: "/auth/login",
             element: <Login></Login>
+        },
+        {
+            path: "/auth/register",
+            element: <Register></Register>
         }
     ]
   },
