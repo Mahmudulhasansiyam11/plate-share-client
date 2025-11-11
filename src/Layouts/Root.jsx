@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import NavBar from "../Components/Header/NavBar";
-import { Outlet } from "react-router";
+import { Outlet, useNavigation } from "react-router";
 import Footer from "../Components/Footer/Footer";
 import { ToastContainer } from "react-toastify";
+import Loading from "../Pages/Loading/Loading";
 
 const Root = () => {
+    const { state } = useNavigation();
   useEffect(() => {
     document.title = "Home";
   }, []);
@@ -14,7 +16,8 @@ const Root = () => {
         {/* NavBar */}
         <NavBar></NavBar>
         {/* Outlet */}
-        <Outlet></Outlet>
+        {/* <Outlet></Outlet> */}
+        {state == "loading" ? <Loading></Loading> : <Outlet></Outlet>}
         {/* Footer */}
         <Footer></Footer>
         <ToastContainer />

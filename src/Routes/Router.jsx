@@ -14,91 +14,112 @@ import MyProfile from "../Pages/MyProfile/MyProfile";
 import UpdateProfile from "../Pages/UpdateProfile/UpdateProfile";
 import FoodDetails from "../Pages/FoodDetails/FoodDetails";
 import UpdateFood from "../Pages/UpdateFood/UpdateFood";
+import Loading from "../Pages/Loading/Loading";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
     children: [
-        {
-            index: true,
-            path: "/",
-            element: <HomeLayout></HomeLayout>,
-            loader: () => fetch('http://localhost:3000/highest-food'),
-        },
-        {
-            path: "/availableFoods",
-            element: <AvailableFoods></AvailableFoods>,
-            loader: () => fetch('http://localhost:3000/foods'),
-        },
-        {
-            path: "/addFood",
-            element: <PrivateRoute>
-                <AddFood></AddFood>
-            </PrivateRoute>
-        },
-        {
-            path: "/food/:id",
-            element: <PrivateRoute>
-                <FoodDetails></FoodDetails>
-            </PrivateRoute>,
-            loader: ({params}) => fetch(`http://localhost:3000/foods/${params.id}`),
-        },
-        {
-            path: "/update-food/:id",
-            element: <PrivateRoute>
-                <UpdateFood></UpdateFood>
-            </PrivateRoute>,
-             loader: ({params}) => fetch(`http://localhost:3000/foods/${params.id}`),
-        },
-        {
-            path: "/manageMyFoods",
-            element: <PrivateRoute>
-                <ManageMyFoods></ManageMyFoods>
-            </PrivateRoute>
-        },
-        {
-            path: "/myFoodRequest",
-            element: <PrivateRoute>
-                <MyFoodRequest></MyFoodRequest>
-            </PrivateRoute>
-        },
-        {
-            path: "/myProfile",
-            element: <PrivateRoute>
-                <MyProfile></MyProfile>
-            </PrivateRoute>
-        },
-        {
-            path: "/updateProfile",
-            element: <PrivateRoute>
-                <UpdateProfile></UpdateProfile>
-            </PrivateRoute>
-        },
-        {
-            path: "/*",
-            element: <ErrorPage></ErrorPage>
-        }
-    ]
+      {
+        index: true,
+        path: "/",
+        element: <HomeLayout></HomeLayout>,
+        loader: () => fetch("http://localhost:3000/highest-food"),
+        hydrateFallbackElement: <Loading></Loading>,
+      },
+      {
+        path: "/availableFoods",
+        element: <AvailableFoods></AvailableFoods>,
+        loader: () => fetch("http://localhost:3000/foods"),
+        hydrateFallbackElement: <Loading></Loading>,
+      },
+      {
+        path: "/addFood",
+        element: (
+          <PrivateRoute>
+            <AddFood></AddFood>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/food/:id",
+        element: (
+          <PrivateRoute>
+            <FoodDetails></FoodDetails>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/foods/${params.id}`),
+        hydrateFallbackElement: <Loading></Loading>,
+      },
+      {
+        path: "/update-food/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateFood></UpdateFood>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/foods/${params.id}`),
+        hydrateFallbackElement: <Loading></Loading>,
+      },
+      {
+        path: "/manageMyFoods",
+        element: (
+          <PrivateRoute>
+            <ManageMyFoods></ManageMyFoods>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/myFoodRequest",
+        element: (
+          <PrivateRoute>
+            <MyFoodRequest></MyFoodRequest>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/myProfile",
+        element: (
+          <PrivateRoute>
+            <MyProfile></MyProfile>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/updateProfile",
+        element: (
+          <PrivateRoute>
+            <UpdateProfile></UpdateProfile>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/*",
+        element: <ErrorPage></ErrorPage>,
+      },
+    ],
   },
   {
     path: "/auth",
     element: <AuthLayout></AuthLayout>,
     children: [
-        {
-            path: "/auth/login",
-            element: <Login></Login>
-        },
-        {
-            path: "/auth/register",
-            element: <Register></Register>
-        }
-    ]
+      {
+        path: "/auth/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/auth/register",
+        element: <Register></Register>,
+      },
+    ],
   },
   {
     path: "/*",
-    element: <ErrorPage></ErrorPage>
-  }
+    element: <ErrorPage></ErrorPage>,
+  },
 ]);
 
 export default router;
