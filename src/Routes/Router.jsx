@@ -23,7 +23,8 @@ const router = createBrowserRouter([
         {
             index: true,
             path: "/",
-            element: <HomeLayout></HomeLayout>
+            element: <HomeLayout></HomeLayout>,
+            loader: () => fetch('http://localhost:3000/highest-food'),
         },
         {
             path: "/availableFoods",

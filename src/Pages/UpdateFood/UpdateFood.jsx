@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router";
-// import { useNavigate} from "react-router";
+import { useNavigate} from "react-router";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../Provider/AuthContext/AuthContext";
+import Swal from "sweetalert2";
 
 const UpdateFood = () => {
   const foodData = useLoaderData(); // Loaded food data
-//   const navigate = useNavigate();
+    const navigate = useNavigate();
 
   // State for form fields
   const [foodName, setFoodName] = useState(foodData.food_name);
   const [foodImage, setFoodImage] = useState(foodData.food_image);
   const [foodQuantity, setFoodQuantity] = useState(foodData.quantity_number); // numeric input now
-  const [pickupLocation, setPickupLocation] = useState(foodData.pickup_location);
+  const [pickupLocation, setPickupLocation] = useState(
+    foodData.pickup_location
+  );
   const [expireDate, setExpireDate] = useState(foodData.expire_date);
   const [notes, setNotes] = useState(foodData.additional_notes);
 
@@ -23,7 +26,13 @@ const UpdateFood = () => {
   const handleUpdateFood = (e) => {
     e.preventDefault();
 
-    if (!foodName || !foodImage || !foodQuantity || !pickupLocation || !expireDate) {
+    if (
+      !foodName ||
+      !foodImage ||
+      !foodQuantity ||
+      !pickupLocation ||
+      !expireDate
+    ) {
       toast.error("Please fill all required fields!");
       return;
     }
@@ -42,26 +51,30 @@ const UpdateFood = () => {
       donator_image: foodData.donator_image,
     };
 
-
-     // update functionality
-    fetch(`http://localhost:3000/foods/${foodData._id}`,{
-        method: "PATCH",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedFood),
+    // update functionality
+    fetch(`http://localhost:3000/foods/${foodData._id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedFood),
     })
-    .then(res => res.json())
-    .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         console.log(data);
-    })
-    .catch(error => {
+        navigate(`/food/${foodData._id}`);
+        Swal.fire({
+          title: "Update Successfully",
+          icon: "success",
+          draggable: true,
+        });
+      })
+      .catch((error) => {
         console.log(error);
-    })
-
+      });
 
     console.log(updatedFood);
-    toast.success("Food updated successfully!");
+    // toast.success("Food updated successfully!");
     // navigate(`/food/${foodData._id}`);
   };
 
@@ -80,7 +93,9 @@ const UpdateFood = () => {
         <form className="space-y-4" onSubmit={handleUpdateFood}>
           {/* Food Name */}
           <div>
-            <label className="label text-gray-700 font-medium">Food Name *</label>
+            <label className="label text-gray-700 font-medium">
+              Food Name *
+            </label>
             <input
               type="text"
               className="input input-bordered w-full"
@@ -125,7 +140,9 @@ const UpdateFood = () => {
 
           {/* Pickup Location */}
           <div>
-            <label className="label text-gray-700 font-medium">Pickup Location *</label>
+            <label className="label text-gray-700 font-medium">
+              Pickup Location *
+            </label>
             <input
               type="text"
               className="input input-bordered w-full"
@@ -138,7 +155,9 @@ const UpdateFood = () => {
 
           {/* Expire Date */}
           <div>
-            <label className="label text-gray-700 font-medium">Expire Date *</label>
+            <label className="label text-gray-700 font-medium">
+              Expire Date *
+            </label>
             <input
               type="date"
               className="input input-bordered w-full"
@@ -150,7 +169,9 @@ const UpdateFood = () => {
 
           {/* Additional Notes */}
           <div>
-            <label className="label text-gray-700 font-medium">Additional Notes</label>
+            <label className="label text-gray-700 font-medium">
+              Additional Notes
+            </label>
             <textarea
               className="textarea textarea-bordered w-full"
               placeholder="Any extra info..."
