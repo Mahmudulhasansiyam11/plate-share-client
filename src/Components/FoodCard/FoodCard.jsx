@@ -75,9 +75,9 @@ const FoodCard = ({ food }) => {
             </button>
           </Link>
 
-          <button className="btn btn-sm btn-outline btn-success rounded-full">
+          {/* <button className="btn btn-sm btn-outline btn-success rounded-full">
             Request Food
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
