@@ -5,7 +5,8 @@ import { FcGoogle } from "react-icons/fc";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
-  const { createUser, setUser, updateUser, googleSignIn } = useContext(AuthContext);
+  const { createUser, setUser, updateUser, googleSignIn } =
+    useContext(AuthContext);
   const [nameError, setNameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [photoError, setPhotoError] = useState("");
@@ -64,6 +65,26 @@ const Register = () => {
         updateUser({ displayName: name, photoURL: photo })
           .then(() => {
             setUser({ ...result.user, displayName: name, photoURL: photo });
+
+            const newUser = {
+              name: result.user.displayName,
+              email: result.user.email,
+              image: result.user.photoURL,
+            };
+
+            // create user in the database
+            fetch("http://localhost:3000/users", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(newUser),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                console.log("data after user save", data);
+              });
+
             navigate("/");
           })
           .catch((error) => {
@@ -78,6 +99,26 @@ const Register = () => {
     googleSignIn()
       .then((result) => {
         setUser(result.user);
+
+        const newUser = {
+          name: result.user.displayName,
+          email: result.user.email,
+          image: result.user.photoURL,
+        };
+
+        // create user in the database
+        fetch("http://localhost:3000/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("data after user save", data);
+          });
+
         navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => console.log(error.message));
@@ -102,7 +143,9 @@ const Register = () => {
           <form onSubmit={handleRegister}>
             {/* Name */}
             <div className="mb-4">
-              <label className="block text-gray-700 font-semibold mb-1">Name</label>
+              <label className="block text-gray-700 font-semibold mb-1">
+                Name
+              </label>
               <input
                 type="text"
                 name="name"
@@ -110,12 +153,16 @@ const Register = () => {
                 required
                 className="w-full px-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400 transition"
               />
-              {nameError && <p className="text-red-500 text-xs mt-1">{nameError}</p>}
+              {nameError && (
+                <p className="text-red-500 text-xs mt-1">{nameError}</p>
+              )}
             </div>
 
             {/* Photo URL */}
             <div className="mb-4">
-              <label className="block text-gray-700 font-semibold mb-1">Photo URL</label>
+              <label className="block text-gray-700 font-semibold mb-1">
+                Photo URL
+              </label>
               <input
                 type="text"
                 name="photo"
@@ -123,12 +170,16 @@ const Register = () => {
                 required
                 className="w-full px-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400 transition"
               />
-              {photoError && <p className="text-red-500 text-xs mt-1">{photoError}</p>}
+              {photoError && (
+                <p className="text-red-500 text-xs mt-1">{photoError}</p>
+              )}
             </div>
 
             {/* Email */}
             <div className="mb-4">
-              <label className="block text-gray-700 font-semibold mb-1">Email</label>
+              <label className="block text-gray-700 font-semibold mb-1">
+                Email
+              </label>
               <input
                 type="email"
                 name="email"
@@ -140,7 +191,9 @@ const Register = () => {
 
             {/* Password */}
             <div className="mb-4 relative">
-              <label className="block text-gray-700 font-semibold mb-1">Password</label>
+              <label className="block text-gray-700 font-semibold mb-1">
+                Password
+              </label>
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
@@ -154,7 +207,9 @@ const Register = () => {
               >
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
-              {passwordError && <p className="text-red-500 text-xs mt-1">{passwordError}</p>}
+              {passwordError && (
+                <p className="text-red-500 text-xs mt-1">{passwordError}</p>
+              )}
             </div>
 
             {/* Register Button */}
@@ -175,12 +230,17 @@ const Register = () => {
               className="w-full flex items-center justify-center gap-3 py-2 px-4 rounded-xl bg-white shadow-md border border-gray-300 hover:shadow-lg transition-transform transform hover:scale-105 mb-4"
             >
               <FcGoogle className="text-xl" />
-              <span className="text-gray-700 font-medium">Continue with Google</span>
+              <span className="text-gray-700 font-medium">
+                Continue with Google
+              </span>
             </button>
 
             <div className="text-center text-sm text-gray-700">
               Already have an account?{" "}
-              <Link to="/auth/login" className="text-green-500 font-semibold hover:underline">
+              <Link
+                to="/auth/login"
+                className="text-green-500 font-semibold hover:underline"
+              >
                 Login
               </Link>
             </div>

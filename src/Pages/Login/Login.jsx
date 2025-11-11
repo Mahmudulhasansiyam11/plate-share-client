@@ -33,6 +33,26 @@ const Login = () => {
     googleSignIn()
       .then((result) => {
         setUser(result.user);
+
+        const newUser = {
+          name: result.user.displayName,
+          email: result.user.email,
+          image: result.user.photoURL,
+        };
+
+        // create user in the database
+        fetch("http://localhost:3000/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("data after user save", data);
+          });
+
         navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => console.log(error.message));
@@ -90,9 +110,7 @@ const Login = () => {
             </div>
 
             {/* Error Message */}
-            {error && (
-              <p className="text-red-500 text-sm mb-2">{error}</p>
-            )}
+            {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
 
             {/* Login Button */}
             <button
@@ -111,12 +129,17 @@ const Login = () => {
               className="w-full flex items-center justify-center gap-3 py-2 px-4 rounded-xl bg-white shadow-md border border-gray-300 hover:shadow-lg transition-transform transform hover:scale-105 mb-4"
             >
               <FcGoogle className="text-xl" />
-              <span className="text-gray-700 font-medium">Continue with Google</span>
+              <span className="text-gray-700 font-medium">
+                Continue with Google
+              </span>
             </button>
 
             <div className="text-center text-sm text-gray-700">
               Don’t have an account?{" "}
-              <Link to="/auth/register" className="text-green-500 font-semibold hover:underline">
+              <Link
+                to="/auth/register"
+                className="text-green-500 font-semibold hover:underline"
+              >
                 Register
               </Link>
             </div>
