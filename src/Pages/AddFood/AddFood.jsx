@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../Provider/AuthContext/AuthContext";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
+import Swal from "sweetalert2";
 
 const AddFood = () => {
   const { user } = useContext(AuthContext);
@@ -57,14 +58,20 @@ const AddFood = () => {
     .then(res => res.json())
     .then(data => {
         console.log(data);
+        navigate("/availableFoods");
+         Swal.fire({
+                  title: "Add Food Successfully",
+                  icon: "success",
+                  draggable: true,
+                });
     })
     .catch(error => {
         console.log(error);  
     })
 
     console.log(foodData);
-    toast.success("Food added successfully!");
-    navigate("/availableFoods");
+    // toast.success("Food added successfully!");
+    
   };
 
   return (
