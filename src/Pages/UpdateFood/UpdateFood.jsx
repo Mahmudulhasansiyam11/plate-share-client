@@ -62,7 +62,7 @@ const UpdateFood = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        navigate(`/food/${foodData._id}`);
+        navigate('/manageMyFoods');
         Swal.fire({
           title: "Update Successfully",
           icon: "success",

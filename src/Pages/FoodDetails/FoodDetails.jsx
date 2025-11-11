@@ -1,5 +1,5 @@
 import React, { use, useEffect, useRef, useState } from "react";
-import { useLoaderData, useNavigate } from "react-router";
+import { useLoaderData } from "react-router";
 import { Link } from "react-router";
 import { FaUtensils, FaMapMarkerAlt, FaClock } from "react-icons/fa";
 import Swal from "sweetalert2";
@@ -13,7 +13,6 @@ const FoodDetails = () => {
   const { _id: foodId} = foodData;
   const [ request, setRequest ] = useState([]);
   const reqModalRef = useRef(null);
-  const navigate = useNavigate();
 
 
   // implement useEffect to load data
@@ -25,35 +24,6 @@ const FoodDetails = () => {
       setRequest(data);
     })
   }, [foodId]);
-
-  // Delete functionality
-  const handleDelete = () => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        fetch(`http://localhost:3000/foods/${foodData._id}`, {
-          method: "DELETE",
-        })
-          .then((res) => res.json())
-          .then(() => {
-            navigate("/availableFoods");
-            Swal.fire({
-              title: "Deleted!",
-              text: "Your file has been deleted.",
-              icon: "success",
-            });
-          })
-          .catch((error) => console.error(error));
-      }
-    });
-  };
 
   // Handle Request Modal
   const handleReqModalOpen = () => {
@@ -249,18 +219,6 @@ const FoodDetails = () => {
             </dialog>
           </div>
 
-          <Link
-            to={`/update-food/${foodData._id}`}
-            className="btn bg-blue-500 hover:bg-blue-600 text-white w-full md:w-auto"
-          >
-            Update Food
-          </Link>
-          <button
-            onClick={handleDelete}
-            className="btn bg-red-500 hover:bg-red-600 text-white w-full md:w-auto"
-          >
-            Delete Food
-          </button>
         </div>
       </div>
     </div>
