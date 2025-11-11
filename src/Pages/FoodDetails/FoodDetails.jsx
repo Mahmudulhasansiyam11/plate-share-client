@@ -1,11 +1,45 @@
 import React from "react";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import { Link } from "react-router";
 import { FaUtensils, FaMapMarkerAlt, FaClock } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const FoodDetails = () => {
   const foodData = useLoaderData();
   console.log(foodData);
+  const navigate = useNavigate();
+
+  // delete functionality
+  const handleDelete = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:3000/foods/${foodData._id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            navigate('/availableFoods');
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    });
+  };
 
   return (
     <div className="min-h-screen flex justify-center items-center px-4 py-10 bg-[linear-gradient(135deg,#FFEDBC,#FFD3B6,#FFAAA5)] relative">
@@ -28,14 +62,17 @@ const FoodDetails = () => {
         <h2 className="text-2xl sm:text-3xl font-bold text-green-700 mb-3">
           {foodData.food_name}
         </h2>
-        <p className="text-gray-700 mb-3 text-sm sm:text-base">{foodData.additional_notes}</p>
+        <p className="text-gray-700 mb-3 text-sm sm:text-base">
+          {foodData.additional_notes}
+        </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-gray-700 mb-6">
           <p className="flex items-center gap-2 text-sm sm:text-base">
             <FaUtensils className="text-green-600" /> {foodData.food_quantity}
           </p>
           <p className="flex items-center gap-2 text-sm sm:text-base">
-            <FaMapMarkerAlt className="text-red-500" /> {foodData.pickup_location}
+            <FaMapMarkerAlt className="text-red-500" />{" "}
+            {foodData.pickup_location}
           </p>
           <p className="flex items-center gap-2 text-sm sm:text-base">
             <FaClock className="text-yellow-500" /> Expires on:{" "}
@@ -51,7 +88,9 @@ const FoodDetails = () => {
             className="w-16 h-16 rounded-full object-cover"
           />
           <div className="text-center sm:text-left">
-            <p className="font-semibold text-gray-800">{foodData.donator_name}</p>
+            <p className="font-semibold text-gray-800">
+              {foodData.donator_name}
+            </p>
             <p className="text-gray-600 text-sm">{foodData.donator_email}</p>
           </div>
         </div>
@@ -67,7 +106,10 @@ const FoodDetails = () => {
           >
             Update Food
           </Link>
-          <button className="btn bg-red-500 hover:bg-red-600 text-white w-full md:w-auto transition-transform transform hover:scale-105">
+          <button
+            onClick={handleDelete}
+            className="btn bg-red-500 hover:bg-red-600 text-white w-full md:w-auto transition-transform transform hover:scale-105"
+          >
             Delete Food
           </button>
         </div>
@@ -77,7 +119,3 @@ const FoodDetails = () => {
 };
 
 export default FoodDetails;
-
-
-
-
