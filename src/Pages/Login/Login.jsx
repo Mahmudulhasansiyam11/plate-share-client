@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../Provider/AuthContext/AuthContext";
 import { FcGoogle } from "react-icons/fc";
@@ -6,137 +6,125 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const [error, setError] = useState("");
-  const { signIn, setUser, googleSignIn } = use(AuthContext);
-//   const [email, setEmail] = useState("");
+  const { signIn, setUser, googleSignIn } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
 
-  // const googleProvider = new GoogleAuthProvider();
-
   const location = useLocation();
-  // console.log(location);
-
   const navigate = useNavigate();
 
   useEffect(() => {
-    document.title = "Login";
+    document.title = "Login - PlateShare";
   }, []);
 
-  // Login Functionality
   const handleLogin = (event) => {
     event.preventDefault();
     const email = event.target.email.value;
     const password = event.target.password.value;
 
-    // console.log({email, password});
-
-    // Sign In Functionality
     signIn(email, password)
       .then((result) => {
-        // console.log(result.user);
         setUser(result.user);
-
         navigate(`${location.state ? location.state : "/"}`);
       })
-      .catch((error) => {
-        // console.log(error.code);
-        console.log(error.message);
-        setError(error.code);
-      });
+      .catch((error) => setError(error.code));
   };
 
-  // Goggle Sign In Functionality
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
         setUser(result.user);
         navigate(`${location.state ? location.state : "/"}`);
       })
-      .catch((error) => {
-        console.log(error.message);
-      });
+      .catch((error) => console.log(error.message));
   };
 
-
-  // Handle Password
   const handleShowPassword = (event) => {
     event.preventDefault();
     setShowPassword(!showPassword);
-  }
+  };
 
   return (
-    <div className="flex justify-center bg-white items-center min-h-screen ">
-      <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl py-5 bg-[linear-gradient(to_right,#00F260,#0575E6)]">
-        <div className="card-body">
-          <h3 className="font-semibold text-2xl text-center">
-            {" "}
-            Login your account{" "}
-          </h3>
+    <div className="min-h-screen flex items-center justify-center px-4 py-10 bg-[linear-gradient(135deg,#FFEDBC,#FFD3B6,#FFAAA5)]">
+      <div className="w-full max-w-sm md:max-w-md lg:max-w-lg relative rounded-3xl shadow-2xl overflow-hidden bg-white/30 backdrop-blur-md border border-white/20">
+        {/* Header Gradient */}
+        <div className="h-24 bg-[linear-gradient(90deg,#FF6B6B,#FFD93D)] flex items-center justify-center">
+          <h2 className="text-white text-2xl font-extrabold drop-shadow-md">
+            🍲 Login to PlateShare
+          </h2>
+        </div>
+
+        <div className="card-body px-6 py-8">
           <form onSubmit={handleLogin}>
-            <fieldset className="fieldset">
-              {/* Email */}
-              <label className="label">Email</label>
+            {/* Email */}
+            <div className="mb-4">
+              <label className="block text-gray-700 font-semibold mb-1">
+                Email
+              </label>
               <input
                 type="email"
                 name="email"
-                className="input"
-                placeholder="Email"
-                // onChange={(event) => setEmail(event.target.value)}
+                placeholder="Your email"
                 required
+                className="w-full px-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400 transition"
               />
-              {/* Password */}
-              <label className="label">Password</label>
-              <div className="relative">
-                <input
+            </div>
+
+            {/* Password */}
+            <div className="mb-4 relative">
+              <label className="block text-gray-700 font-semibold mb-1">
+                Password
+              </label>
+              <input
                 type={showPassword ? "text" : "password"}
                 name="password"
-                className="input"
-                placeholder="Password"
+                placeholder="Your password"
                 required
+                className="w-full px-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400 transition"
               />
-              <button onClick={handleShowPassword} className="btn btn-xs absolute top-2 right-6">
-                {showPassword ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>}
-              </button>
-              </div>
-              <div className="link link-hover">
-                  Forgot password?
-              </div>
-              <div>
-                {error && <p className="text-red-400 text-xs">{error}</p>}
-              </div>
               <button
-                type="submit"
-                className="btn btn-neutral mt-4 btn-outline tracking-wide transition-transform transform hover:scale-105"
+                onClick={handleShowPassword}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
               >
-                Login
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
+            </div>
 
-              <div className="text-center mt-1">
-                <p className="font-semibold">or</p>
-              </div>
+            {/* Error Message */}
+            {error && (
+              <p className="text-red-500 text-sm mb-2">{error}</p>
+            )}
 
-              {/* Google Sign In Button */}
+            {/* Login Button */}
+            <button
+              type="submit"
+              className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 rounded-xl transition-transform transform hover:scale-105 shadow-md mb-3"
+            >
+              Login
+            </button>
 
-              <div>
-                <button
-                  onClick={handleGoogleSignIn}
-                  type="button"
-                  className="w-full flex items-center justify-center gap-3 mt-1 border border-gray-300 rounded-full py-2 px-4 shadow-sm hover:shadow-md transition-transform transform hover:scale-105 bg-white"
-                >
-                  <FcGoogle className="text-xl" />
-                  <span className="text-sm font-medium text-gray-700">
-                    Continue with Google
-                  </span>
-                </button>
-              </div>
-              <p className="font-semibold text-center pt-5">
-                Dont’t Have An Account ?{" "}
-                <Link className="text-secondary" to="/auth/register">
-                  Register
-                </Link>
-              </p>
-            </fieldset>
+            <div className="text-center text-gray-700 mb-3">or</div>
+
+            {/* Google Login */}
+            <button
+              type="button"
+              onClick={handleGoogleSignIn}
+              className="w-full flex items-center justify-center gap-3 py-2 px-4 rounded-xl bg-white shadow-md border border-gray-300 hover:shadow-lg transition-transform transform hover:scale-105 mb-4"
+            >
+              <FcGoogle className="text-xl" />
+              <span className="text-gray-700 font-medium">Continue with Google</span>
+            </button>
+
+            <div className="text-center text-sm text-gray-700">
+              Don’t have an account?{" "}
+              <Link to="/auth/register" className="text-green-500 font-semibold hover:underline">
+                Register
+              </Link>
+            </div>
           </form>
         </div>
+
+        {/* Footer Decorative Gradient */}
+        <div className="h-2 w-full bg-[linear-gradient(90deg,#FF6B6B,#FFD93D)] absolute bottom-0 left-0 rounded-b-3xl"></div>
       </div>
     </div>
   );

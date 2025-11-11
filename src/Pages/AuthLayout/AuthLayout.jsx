@@ -5,7 +5,7 @@ import { Outlet } from 'react-router';
 
 const AuthLayout = () => {
     return (
-        <div className='min-h-screen bg-[linear-gradient(90deg,#0A0B36,#0E425C,#0A0B36)]'>
+        <div className='min-h-screen'>
             <header>
                 <NavBar></NavBar>
             </header>
@@ -14,7 +14,7 @@ const AuthLayout = () => {
                 <Outlet></Outlet>
             </main>
 
-            <footer className="bg-[#031637] mt-10 text-white py-10">
+            <footer>
                 <Footer></Footer>
             </footer>
         </div>
