@@ -16,21 +16,17 @@ const UpdateProfile = () => {
 
   const handleProfile = (event) => {
     event.preventDefault();
-    // console.log(event.target);
     const name = event.target.name.value;
     const photo = event.target.photo.value;
 
-    // name validation
     if (name.length < 5) {
-      setNameError("Name should be more than 5 character");
+      setNameError("Name should be more than 5 characters");
       return;
     } else {
       setNameError("");
     }
 
-    // photoURL validation
     const photoRegex = /\.(jpeg|jpg|png|gif|bmp|webp)$/i;
-
     if (!photo) {
       setPhotoError("Photo URL is required");
       return;
@@ -41,7 +37,6 @@ const UpdateProfile = () => {
       setPhotoError("");
     }
 
-    // update user functionality
     updateUser({
       displayName: name,
       photoURL: photo,
@@ -51,66 +46,66 @@ const UpdateProfile = () => {
         toast.success("Profile updated successfully!");
         navigate("/myProfile"); 
       })
-      .catch((error) => {
-        console.error(error);
-      });
+      .catch((error) => console.error(error));
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl py-5 bg-[linear-gradient(to_right,#00F260,#0575E6)]">
-        <div className="card-body">
-          <h3 className="font-semibold text-2xl text-center">
-            {" "}
-            Update Profile{" "}
-          </h3>
-          <form onSubmit={handleProfile}>
-            <fieldset className="fieldset">
-              {/* text */}
-              <label className="label">Name</label>
-              <input
-                type="text"
-                name="name"
-                className="input"
-                placeholder="Name"
-                required
-              />
-              <div>
-                {nameError && (
-                  <p className="text-red-400 text-xs">{nameError}</p>
-                )}
-              </div>
-              {/* photo url */}
-              <label className="label">Photo URL</label>
-              <input
-                type="text"
-                name="photo"
-                className="input"
-                placeholder="Photo URL"
-                required
-              />
-              <div>
-                {photoError && (
-                  <p className="text-red-400 text-xs">{photoError}</p>
-                )}
-              </div>
+    <div className="min-h-screen flex justify-center items-center bg-[linear-gradient(135deg,#FFEDBC,#FFD3B6,#FFAAA5)] relative overflow-hidden">
+      
+     
+      <div className="absolute -top-32 -left-32 w-96 h-96 bg-green-300 rounded-full blur-3xl opacity-50 animate-pulse"></div>
+      <div className="absolute -bottom-32 -right-32 w-[28rem] h-[28rem] bg-orange-300 rounded-full blur-3xl opacity-50 animate-pulse"></div>
 
-              <button
-                type="submit"
-                className="btn btn-neutral mt-4 btn-outline tracking-wide transition-transform transform hover:scale-105"
-              >
-                Update
-              </button>
+     
+      <div className="relative w-full max-w-md bg-white/50 backdrop-blur-2xl rounded-3xl shadow-2xl border border-white/30 p-8 md:p-10 transition-transform transform hover:scale-[1.02]">
+        <h3 className="text-3xl font-bold text-center text-green-700 mb-6 drop-shadow-sm">
+          Update Profile
+        </h3>
 
-              <p className="font-semibold text-center pt-5">
-                Back to {" "}
-                <Link className="text-secondary" to="/myProfile">
-                  Profile
-                </Link>
-              </p>
-            </fieldset>
-          </form>
-        </div>
+        <form onSubmit={handleProfile} className="space-y-4">
+          {/* Name */}
+          <div>
+            <label className="label text-gray-700 font-medium">Name</label>
+            <input
+              type="text"
+              name="name"
+              defaultValue={user.displayName || ""}
+              className="input input-bordered w-full"
+              placeholder="Name"
+              required
+            />
+            {nameError && <p className="text-red-500 text-xs mt-1">{nameError}</p>}
+          </div>
+
+          {/* Photo URL */}
+          <div>
+            <label className="label text-gray-700 font-medium">Photo URL</label>
+            <input
+              type="text"
+              name="photo"
+              className="input input-bordered w-full"
+              placeholder="Photo URL"
+              required
+            />
+            {photoError && <p className="text-red-500 text-xs mt-1">{photoError}</p>}
+          </div>
+
+          {/* Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 mt-4">
+            <button
+              type="submit"
+              className="btn bg-green-500 hover:bg-green-600 text-white w-full sm:w-auto transition-transform transform hover:scale-105"
+            >
+              Update
+            </button>
+            <Link
+              to="/myProfile"
+              className="btn btn-outline w-full sm:w-auto text-green-700 hover:bg-green-50 transition-transform transform hover:scale-105"
+            >
+              Back to Profile
+            </Link>
+          </div>
+        </form>
       </div>
     </div>
   );
