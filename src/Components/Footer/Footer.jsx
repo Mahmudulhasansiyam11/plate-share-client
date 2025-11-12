@@ -47,14 +47,6 @@ const Footer = () => {
                   Add Food
                 </Link>
               </li>
-              <li>
-                <Link
-                  to="/contact"
-                  className="hover:text-amber-300 transition-colors"
-                >
-                  Contact Us
-                </Link>
-              </li>
             </ul>
           </div>
 
