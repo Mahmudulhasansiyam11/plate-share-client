@@ -3,7 +3,6 @@ import { FaClock, FaMapMarkerAlt, FaUtensils } from "react-icons/fa";
 import { useLoaderData } from "react-router";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Provider/AuthContext/AuthContext";
-// import { div } from "framer-motion/client";
 import RequestTable from "../../Components/RequestTable/RequestTable";
 
 const FoodDetails = () => {
@@ -14,7 +13,7 @@ const FoodDetails = () => {
   const reqModalRef = useRef(null);
 
 
-  // implement useEffect to load data
+  
   useEffect(() => {
     fetch(`https://plate-share-api-server.vercel.app/foods/requests/${foodId}`)
     .then(res => res.json())

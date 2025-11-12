@@ -10,7 +10,7 @@ const AvailableFoods = () => {
       document.title = "Available Foods - PlateShare";
     }, []);
 
-  // ✅ Filter only accepted foods
+  // Filter only accepted foods
   const acceptedFoods = foodData.filter(
     (food) => food.food_status === "accepted" || food.food_status === "Available"
   );

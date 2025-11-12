@@ -69,7 +69,7 @@ const AddFood = () => {
         console.log(error);  
     })
 
-    console.log(foodData);
+    // console.log(foodData);
     // toast.success("Food added successfully!");
     
   };

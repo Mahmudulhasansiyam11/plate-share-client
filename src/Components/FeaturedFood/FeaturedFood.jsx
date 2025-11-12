@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import FoodCard from "../FoodCard/FoodCard";
 
 const FeaturedFood = ({ highestQuantityFoodData }) => {
-  console.log(highestQuantityFoodData);
+  // console.log(highestQuantityFoodData);
 
   return (
     <section className="relative min-h-screen bg-gradient-to-br from-amber-50 via-lime-50 to-emerald-100 py-20 overflow-hidden flex justify-center items-center">
