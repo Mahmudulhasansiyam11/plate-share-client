@@ -10,6 +10,7 @@ const ManageMyFoods = () => {
   
 
   useEffect(() => {
+    document.title = "Manage Foods - PlateShare";
     if (user?.email) {
       fetch(`http://localhost:3000/foods?email=${user.email}`)
         .then((res) => res.json())

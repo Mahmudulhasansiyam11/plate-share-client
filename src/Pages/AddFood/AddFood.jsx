@@ -16,7 +16,7 @@ const AddFood = () => {
   const [notes, setNotes] = useState("");
 
   useEffect(() => {
-    document.title = "Add Food";
+    document.title = "Add Food - PlateShare";
   }, []);
 
   const handleAddFood = (e) => {

@@ -11,6 +11,7 @@ const HomeLayout = () => {
   const highestQuantityFoodData = useLoaderData();
 
   useEffect(() => {
+     document.title = "Home - PlateShare";
     AOS.init({
       duration: 1000,
       offset: 120,

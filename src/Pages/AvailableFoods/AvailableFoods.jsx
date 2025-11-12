@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useLoaderData } from "react-router";
 import FoodCard from "../../Components/FoodCard/FoodCard";
 
 const AvailableFoods = () => {
   const foodData = useLoaderData() || [];
   console.log(foodData);
+
+  useEffect(() => {
+      document.title = "Available Foods - PlateShare";
+    }, []);
 
   // ✅ Filter only accepted foods
   const acceptedFoods = foodData.filter(
