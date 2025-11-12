@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../Provider/AuthContext/AuthContext";
-import { FcGoogle } from "react-icons/fc";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const [error, setError] = useState("");
@@ -41,7 +41,7 @@ const Login = () => {
         };
 
         // create user in the database
-        fetch("http://localhost:3000/users", {
+        fetch("https://plate-share-api-server.vercel.app/users", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../Provider/AuthContext/AuthContext";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../Provider/AuthContext/AuthContext";
 
 const ManageMyFoods = () => {
   const { user } = useContext(AuthContext);
@@ -12,7 +12,7 @@ const ManageMyFoods = () => {
   useEffect(() => {
     document.title = "Manage Foods - PlateShare";
     if (user?.email) {
-      fetch(`http://localhost:3000/foods?email=${user.email}`)
+      fetch(`https://plate-share-api-server.vercel.app/foods?email=${user.email}`)
         .then((res) => res.json())
         .then((data) => setManageFood(data));
     }
@@ -32,7 +32,7 @@ const ManageMyFoods = () => {
         confirmButtonText: "Yes, delete it!",
       }).then((result) => {
         if (result.isConfirmed) {
-          fetch(`http://localhost:3000/foods/${id}`, {
+          fetch(`https://plate-share-api-server.vercel.app/foods/${id}`, {
             method: "DELETE",
           })
             .then((res) => res.json())

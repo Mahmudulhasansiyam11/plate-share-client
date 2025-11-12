@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useContext } from "react";
-import { AuthContext } from "../../Provider/AuthContext/AuthContext";
-import { toast } from "react-toastify";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../Provider/AuthContext/AuthContext";
 
 const AddFood = () => {
   const { user } = useContext(AuthContext);
@@ -48,7 +48,7 @@ const AddFood = () => {
       food_status: "Available",
     };
 
-    fetch('http://localhost:3000/foods', {
+    fetch('https://plate-share-api-server.vercel.app/foods', {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

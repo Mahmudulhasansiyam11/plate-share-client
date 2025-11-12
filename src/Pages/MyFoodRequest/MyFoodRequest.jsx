@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+import { FaMapMarkerAlt, FaPhone, FaUtensils } from "react-icons/fa";
 import { AuthContext } from "../../Provider/AuthContext/AuthContext";
-import Swal from "sweetalert2";
-import { FaTrash, FaMapMarkerAlt, FaPhone, FaUtensils } from "react-icons/fa";
 
 const MyFoodRequest = () => {
   const { user } = useContext(AuthContext);
@@ -11,7 +10,7 @@ const MyFoodRequest = () => {
   useEffect(() => {
     document.title = "My Food Requests - PlateShare";
     if (user?.email) {
-      fetch(`http://localhost:3000/requests?email=${user.email}`)
+      fetch(`https://plate-share-api-server.vercel.app/requests?email=${user.email}`)
         .then((res) => res.json())
         .then((data) => setUserFoodRequest(data))
         .catch((err) => console.error(err));

@@ -1,20 +1,20 @@
 import { createBrowserRouter } from "react-router";
-import Root from "../Layouts/Root";
-import HomeLayout from "../Pages/HomeLayout/HomeLayout";
-import AvailableFoods from "../Pages/AvailableFoods/AvailableFoods";
 import ErrorPage from "../Components/ErrorPage/ErrorPage";
-import AuthLayout from "../Pages/AuthLayout/AuthLayout";
-import Login from "../Pages/Login/Login";
-import Register from "../Pages/Register/Register";
-import PrivateRoute from "../Pages/PrivateRoute/PrivateRoute";
+import Root from "../Layouts/Root";
 import AddFood from "../Pages/AddFood/AddFood";
+import AuthLayout from "../Pages/AuthLayout/AuthLayout";
+import AvailableFoods from "../Pages/AvailableFoods/AvailableFoods";
+import FoodDetails from "../Pages/FoodDetails/FoodDetails";
+import HomeLayout from "../Pages/HomeLayout/HomeLayout";
+import Loading from "../Pages/Loading/Loading";
+import Login from "../Pages/Login/Login";
 import ManageMyFoods from "../Pages/ManageMyFoods/ManageMyFoods";
 import MyFoodRequest from "../Pages/MyFoodRequest/MyFoodRequest";
 import MyProfile from "../Pages/MyProfile/MyProfile";
-import UpdateProfile from "../Pages/UpdateProfile/UpdateProfile";
-import FoodDetails from "../Pages/FoodDetails/FoodDetails";
+import PrivateRoute from "../Pages/PrivateRoute/PrivateRoute";
+import Register from "../Pages/Register/Register";
 import UpdateFood from "../Pages/UpdateFood/UpdateFood";
-import Loading from "../Pages/Loading/Loading";
+import UpdateProfile from "../Pages/UpdateProfile/UpdateProfile";
 
 const router = createBrowserRouter([
   {
@@ -25,13 +25,13 @@ const router = createBrowserRouter([
         index: true,
         path: "/",
         element: <HomeLayout></HomeLayout>,
-        loader: () => fetch("http://localhost:3000/highest-food"),
+        loader: () => fetch("https://plate-share-api-server.vercel.app/highest-food"),
         hydrateFallbackElement: <Loading></Loading>,
       },
       {
         path: "/availableFoods",
         element: <AvailableFoods></AvailableFoods>,
-        loader: () => fetch("http://localhost:3000/foods"),
+        loader: () => fetch("https://plate-share-api-server.vercel.app/foods"),
         hydrateFallbackElement: <Loading></Loading>,
       },
       {
@@ -50,7 +50,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/foods/${params.id}`),
+          fetch(`https://plate-share-api-server.vercel.app/foods/${params.id}`),
         hydrateFallbackElement: <Loading></Loading>,
       },
       {
@@ -61,7 +61,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/foods/${params.id}`),
+          fetch(`https://plate-share-api-server.vercel.app/foods/${params.id}`),
         hydrateFallbackElement: <Loading></Loading>,
       },
       {

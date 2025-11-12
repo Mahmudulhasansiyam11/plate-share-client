@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useLoaderData } from "react-router";
-import { useNavigate} from "react-router";
+import { useEffect, useState } from "react";
+import { useLoaderData, useNavigate } from "react-router";
 import { toast } from "react-toastify";
-import { AuthContext } from "../../Provider/AuthContext/AuthContext";
 import Swal from "sweetalert2";
 
 const UpdateFood = () => {
@@ -52,7 +50,7 @@ const UpdateFood = () => {
     };
 
     // update functionality
-    fetch(`http://localhost:3000/foods/${foodData._id}`, {
+    fetch(`https://plate-share-api-server.vercel.app/foods/${foodData._id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

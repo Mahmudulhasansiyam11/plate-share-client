@@ -1,7 +1,6 @@
-import React, { use, useEffect, useRef, useState } from "react";
+import { use, useEffect, useRef, useState } from "react";
+import { FaClock, FaMapMarkerAlt, FaUtensils } from "react-icons/fa";
 import { useLoaderData } from "react-router";
-import { Link } from "react-router";
-import { FaUtensils, FaMapMarkerAlt, FaClock } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Provider/AuthContext/AuthContext";
 // import { div } from "framer-motion/client";
@@ -17,7 +16,7 @@ const FoodDetails = () => {
 
   // implement useEffect to load data
   useEffect(() => {
-    fetch(`http://localhost:3000/foods/requests/${foodId}`)
+    fetch(`https://plate-share-api-server.vercel.app/foods/requests/${foodId}`)
     .then(res => res.json())
     .then(data => {
       console.log('request for this product: ', data);
@@ -49,7 +48,7 @@ const FoodDetails = () => {
 
     console.log("Request Data:", requestData);
 
-    fetch("http://localhost:3000/requests", {
+    fetch("https://plate-share-api-server.vercel.app/requests", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

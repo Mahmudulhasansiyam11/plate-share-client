@@ -73,7 +73,7 @@
 // export default RequestTableRow;
 
 
-import React, { useState } from "react";
+import { useState } from "react";
 import Swal from "sweetalert2";
 
 const RequestTableRow = ({ req }) => {
@@ -83,14 +83,14 @@ const RequestTableRow = ({ req }) => {
   const handleAccept = async () => {
     try {
       // Update request status to "accepted"
-      const reqRes = await fetch(`http://localhost:3000/requests/${req._id}`, {
+      const reqRes = await fetch(`https://plate-share-api-server.vercel.app/requests/${req._id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ food_status: "accepted" }),
       });
 
       // Update related food to "donated"
-      const foodRes = await fetch(`http://localhost:3000/foods/${req.food_id}`, {
+      const foodRes = await fetch(`https://plate-share-api-server.vercel.app/foods/${req.food_id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ food_status: "donated" }),
@@ -111,7 +111,7 @@ const RequestTableRow = ({ req }) => {
   // Handle Reject
   const handleReject = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/requests/${req._id}`, {
+      const res = await fetch(`https://plate-share-api-server.vercel.app/requests/${req._id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ food_status: "rejected" }),
