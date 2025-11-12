@@ -223,10 +223,18 @@ const FoodDetails = () => {
       </div>
     </div>
 
-    {/* request for this product */}
-    <div>
-      <RequestTable requests={request}></RequestTable>
-    </div>
+
+     {/* Only show Request Table if the logged-in user is the owner */}
+      {user?.email === foodData.donator_email && (
+        <div className="my-10 px-4">
+          <h2 className="text-2xl font-bold text-green-700 mb-4">
+            Requests for {foodData.food_name}
+          </h2>
+          <RequestTable requests={request} />
+        </div>
+      )}
+
+
    </div>
   );
 };
