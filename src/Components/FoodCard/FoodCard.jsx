@@ -13,6 +13,7 @@ const FoodCard = ({ food }) => {
     expire_date,
     donator_name,
     donator_image,
+    food_status,
   } = food;
 
   return (
@@ -25,7 +26,7 @@ const FoodCard = ({ food }) => {
           className="w-full h-52 object-cover transition-transform duration-500 hover:scale-105"
         />
         <div className="absolute top-2 right-2 bg-green-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">
-          Available
+        {food_status}
         </div>
       </figure>
 
