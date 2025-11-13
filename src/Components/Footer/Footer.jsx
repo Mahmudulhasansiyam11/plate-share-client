@@ -1,6 +1,7 @@
 import React from "react";
 import { FaTwitter, FaFacebookF, FaInstagram, FaDiscord } from "react-icons/fa";
 import { Link } from "react-router";
+import logo from "../../assets/logo.jpg";
 
 const Footer = () => {
   return (
@@ -15,7 +16,14 @@ const Footer = () => {
           
           {/* Brand Info */}
           <div>
-            <h2 className="text-3xl font-bold mb-3 text-amber-300">PlateShare 🍴</h2>
+            <div className="flex items-center gap-3 mb-3">
+              <img
+                src={logo}
+                alt="PlateShare Logo"
+                className="w-12 h-12 rounded-full shadow-lg border-2 border-amber-300"
+              />
+              <h2 className="text-3xl font-bold text-amber-300">PlateShare 🍴</h2>
+            </div>
             <p className="text-sm text-gray-100 leading-relaxed">
               Share your surplus meals and make a difference!  
               PlateShare connects donors and receivers to reduce food waste and spread kindness across the community.  
@@ -55,12 +63,10 @@ const Footer = () => {
             <h3 className="text-xl font-semibold mb-3 text-amber-200">Community</h3>
             <ul className="space-y-2">
               <li className="hover:text-amber-300 transition-colors">
-                
-                  How It Works
-
+                How It Works
               </li>
               <li className="hover:text-amber-300 transition-colors">
-                 Success Stories
+                Success Stories
               </li>
               <li className="hover:text-amber-300 transition-colors">
                 Become a Volunteer
@@ -117,7 +123,8 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className="text-center text-sm text-gray-100">
           <p>
-            &copy; {new Date().getFullYear()} <span className="text-amber-300 font-semibold">PlateShare</span>.  
+            &copy; {new Date().getFullYear()}{" "}
+            <span className="text-amber-300 font-semibold">PlateShare</span>.  
             All rights reserved.
           </p>
           <p className="mt-2 text-gray-200 italic">
