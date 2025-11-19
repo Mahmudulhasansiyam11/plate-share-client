@@ -1,3 +1,5 @@
+#PlateShare: Community Food Sharing Platform
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -15,20 +17,4 @@ The React Compiler is not enabled on this template because of its impact on dev 
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 
-##### Assignment 10
 
-### Website Name: PlateShare
-
-### Website live URL Link: https://plate-share-9e57e.web.app/
-
-### 5 Features of a PlateShare Website
-
-## 1. Food Listing & Sharing System
-
-## 2. Food Request Management
-
-## 3. User Authentication (Login & Register)
-
-## 4. Responsive & Modern UI Design
-
-## 5. Real-Time Notifications
