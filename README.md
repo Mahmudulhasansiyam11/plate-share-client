@@ -1,6 +1,6 @@
 # PlateShare: Community Food Sharing Platform 🍽️
 
-![PlateShare Logo](https://i.ibb.co.com/7JX759KF/logo.jpg)
+https://i.ibb.co.com/7JX759KF/logo.jpg
 
 ---
 
