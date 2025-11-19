@@ -106,5 +106,5 @@ Ensure you have the following installed on your local machine:
 Clone the client-side and server-side repositories:
 
 ```bash
-git clone https://github.com/your-username/plate-share-client.git
-git clone https://github.com/your-username/plate-share-server.git
+git clone https://github.com/Mahmudulhasansiyam11/plate-share-client
+git clone https://github.com/Mahmudulhasansiyam11/plate-share-server
