@@ -13,6 +13,141 @@ Request food donations
 
 By facilitating local food sharing, PlateShare aims to foster a culture of kindness and sustainability.
 
+
+Project Overview
+Objective
+
+The main objective of PlateShare is to reduce food wastage by allowing users to share surplus food with those in need. The platform empowers people to take action on hunger and community welfare, making it easier for users to donate, request, and manage food donations.
+
+Target Audience
+
+General public: Individuals who want to donate or receive food.
+
+Non-profit organizations: Charities or community-driven organizations looking for surplus food to distribute.
+
+Volunteers: People who want to be part of community food sharing.
+
+Key Metrics
+
+Users: The number of active users who are donating and requesting food.
+
+Donated Food: The total amount of food donated by users (in terms of servings).
+
+Requests Fulfilled: Number of food requests successfully matched with donations.
+
+Active Donations: The number of food items actively available for donation.
+
+Deployment
+
+The PlateShare platform is deployed and live on Vercel
+ for the client-side and Vercel
+ for the server-side. The website is hosted and can be accessed at Live Site URL
+.
+
+Key Features
+
+User Authentication: Secure sign-up and login with Firebase Authentication, including Google sign-in.
+
+Food Management: Ability for users to add, update, and delete food donations.
+
+Food Browsing: Browse available food items based on the quantity and location.
+
+Request Food: Logged-in users can request available food donations and contact the donor.
+
+Dynamic Featured Foods: Display foods with the highest quantity first on the homepage.
+
+Admin Features: Manage your own food donations and update them through a personal dashboard.
+
+Responsive Design: Mobile-first design with full responsiveness for tablets, phones, and desktops.
+
+Error Handling: Friendly error messages and success notifications (using toasts).
+
+Tech Stack
+
+Frontend:
+
+React.js
+
+TailwindCSS (for styling)
+
+React Router (for navigation)
+
+Firebase (for authentication)
+
+Redux (for state management)
+
+Backend:
+
+Node.js
+
+Express.js
+
+MongoDB (for storing food donation data)
+
+Authentication:
+
+Firebase Authentication (for user login and registration)
+
+Deployment:
+
+Vercel (for both frontend and backend hosting)
+
+MongoDB Atlas (for cloud database hosting)
+
+
+Installation
+
+Follow these steps to get the project running on your local machine:
+
+Prerequisites
+
+Ensure you have the following installed on your local machine:
+
+Node.js (v14 or later)
+
+npm (Node Package Manager)
+
+MongoDB (for local development) or access to MongoDB Atlas
+ for a cloud database
+
+Clone the Repository
+
+Clone the client-side and server-side repositories:
+
+git clone https://github.com/your-username/plate-share-client.git
+git clone https://github.com/your-username/plate-share-server.git
+
+
+Navigate to the client-side directory:
+
+cd plate-share-client
+
+
+Install dependencies:
+
+npm install
+
+
+Start the client-side server:
+
+npm start
+
+
+Navigate to the server-side directory:
+
+cd ../plate-share-server
+
+
+Install dependencies:
+
+npm install
+
+
+Set up environment variables for the server (e.g., Firebase credentials, MongoDB URI, etc.).
+
+Start the server:
+
+npm start
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
