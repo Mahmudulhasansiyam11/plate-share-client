@@ -53,7 +53,7 @@ The main objective of **PlateShare** is to reduce food wastage by allowing users
 - **Active Donations**: The number of food items actively available for donation.
 
 ### Deployment
-The PlateShare platform is deployed and live on **Vercel** for both the client-side and server-side. The website is hosted and can be accessed at [Live Site URL](https://your-site-url.com).
+The PlateShare platform is deployed and live on **firebase** for the client-side. The website is hosted and can be accessed at [Live Site URL](https://plate-share-9e57e.web.app/).
 
 ---
 
@@ -76,7 +76,6 @@ The PlateShare platform is deployed and live on **Vercel** for both the client-s
 - **TailwindCSS** (for styling)
 - **React Router** (for navigation)
 - **Firebase** (for authentication)
-- **Redux** (for state management)
 
 ### Backend:
 - **Node.js**
@@ -87,7 +86,8 @@ The PlateShare platform is deployed and live on **Vercel** for both the client-s
 - **Firebase Authentication** (for user login and registration)
 
 ### Deployment:
-- **Vercel** (for both frontend and backend hosting)
+- **Firebase** (for frontend hosting)
+- **Vercel** (for backend hosting)
 - **MongoDB Atlas** (for cloud database hosting)
 
 ---
