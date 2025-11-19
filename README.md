@@ -1,4 +1,4 @@
-#PlateShare: Community Food Sharing Platform
+# PlateShare: Community Food Sharing Platform
 
 # React + Vite
 
