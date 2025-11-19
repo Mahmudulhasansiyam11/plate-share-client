@@ -102,19 +102,59 @@ Ensure you have the following installed on your local machine:
 - **npm** (Node Package Manager)
 - **MongoDB** (for local development) or access to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) for a cloud database
 
-### Clone the Repository
-Clone the client-side and server-side repositories:
+### Start the Project
+
+Follow these steps to get the project running on your local machine:
+
+#### 1. Clone the Repository
+
+Clone both the client-side and server-side repositories:
 
 ```bash
 git clone https://github.com/Mahmudulhasansiyam11/plate-share-client
-cd plate-share-client
-npm install
-
-Set up environment variables by creating a .env file in the root directory:
-#
 git clone https://github.com/Mahmudulhasansiyam11/plate-share-server
-cd plate-share-server
+
+```
+
+#### 2. Set Up the Client-Side
+### Navigate to the client-side directory:
+```bash
+cd plate-share-client
+
+```
+### Install dependencies:
+```bash
 npm install
 
+```
+### Start the client-side server:
+```bash
+npm start
 
+```
+
+
+
+#### 3. Set Up the Server-Side
+### Navigate to the server-side directory:
+```bash
+cd ../plate-share-server
+
+```
+### Install dependencies:
+```bash
+npm install
+
+```
+### Set up your environment variables for the server, such as Firebase credentials, MongoDB URI, etc. Create a .env file in the root of the server directory and add the required variables. For example:
+```bash
+FIREBASE_API_KEY=your-firebase-api-key
+MONGODB_URI=your-mongo-db-uri
+
+```
+### Start the server:
+```bash
+npm start
+
+```
 
