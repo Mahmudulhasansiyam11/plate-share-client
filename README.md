@@ -1,4 +1,25 @@
 # PlateShare: Community Food Sharing Platform
+Table of Contents
+
+About the Project
+
+Project Overview
+
+Objective
+
+Target Audience
+
+Key Metrics
+
+Deployment
+
+Key Features
+
+Tech Stack
+
+Installation
+
+License
 
 # React + Vite
 
