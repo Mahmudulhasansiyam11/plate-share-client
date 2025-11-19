@@ -1,25 +1,17 @@
 # PlateShare: Community Food Sharing Platform
-Table of Contents
 
-About the Project
+# About the Project📃
+PlateShare is a full-stack MERN (MongoDB, Express, React, Node.js) application designed to connect communities by allowing individuals to donate their surplus food to those in need. The platform helps reduce food waste while promoting community engagement.
 
-Project Overview
+Users can:
 
-Objective
+Post food donations
 
-Target Audience
+Browse available food items
 
-Key Metrics
+Request food donations
 
-Deployment
-
-Key Features
-
-Tech Stack
-
-Installation
-
-License
+By facilitating local food sharing, PlateShare aims to foster a culture of kindness and sustainability.
 
 # React + Vite
 
