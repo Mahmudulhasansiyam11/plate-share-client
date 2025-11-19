@@ -107,4 +107,14 @@ Clone the client-side and server-side repositories:
 
 ```bash
 git clone https://github.com/Mahmudulhasansiyam11/plate-share-client
+cd plate-share-client
+npm install
+
+Set up environment variables by creating a .env file in the root directory:
+#
 git clone https://github.com/Mahmudulhasansiyam11/plate-share-server
+cd plate-share-server
+npm install
+
+
+
